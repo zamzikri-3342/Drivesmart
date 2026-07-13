@@ -32,8 +32,23 @@ commute/travel estimates, and a live fuel-price/top-cars dashboard.
 
 - PHP (PDO/MySQL), vanilla JS, Tailwind CSS
 - MySQL database, seeded from `cars.csv`
-- External APIs: OpenRouteService, Open Charge Map, Nominatim/OSRM, TimeZoneDB,
-  hCaptcha, data.gov.my
+
+## APIs used
+
+This project integrates several third-party and government open-data APIs:
+
+| API | Used for | Key required? |
+|---|---|---|
+| [OpenRouteService](https://openrouteservice.org/) | Routing/directions | Yes (free tier) |
+| [Open Charge Map](https://openchargemap.org/site/develop/api) | Nearby EV charging stations (`get_ev_chargers.php`) | Yes (free tier) |
+| [Nominatim](https://nominatim.openstreetmap.org/) (OpenStreetMap) | Geocoding addresses (`travel_info.php`) | No |
+| [OSRM](http://project-osrm.org/) | Driving distance/time between home and workplace (`travel_info.php`) | No |
+| [TimeZoneDB](https://timezonedb.com/) | World clock widget (`get_timezone.php`) | Optional (falls back to PHP's built-in timezone data) |
+| [hCaptcha](https://www.hcaptcha.com/) | Bot protection on admin login (`login.php`) | Yes (site + secret key) |
+| [data.gov.my](https://data.gov.my/) | Live weekly fuel prices (`fuel_price.php`) and JPJ vehicle registration stats (`top_cars.php`) | No |
+
+Get your free API keys from the links above and set them in `config.php` or your
+`.env` file — see [Setup](#setup) below.
 
 ## Prerequisites
 
