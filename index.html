@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkMHmD22zgGgO1gQ5TCDm9MyRMRWFJ4fz4JQ&s">
+    <title>DriveSmart: Car Recommendation and Financial Assessment Platform</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="shared-styles.css">
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandGold: '#0d6efd',
+                        brandGoldHover: '#0a54c7',
+                        brandLuxuryDark: '#14171c',
+                        brandSlate: '#6b7178',
+                        'smart-blue': '#14171c', // Ink
+                        'smart-teal': '#0d6efd', // Blue Accent
+                        'smart-light': '#f3f4f6', // Mist
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Barlow Condensed', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="main.js" defer></script>
+
+</head>
+
+<body class="antialiased text-gray-800">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-brandLuxuryDark border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-between gap-3 py-3">
+                <!-- Logo/Title -->
+                <a href="index.html" class="order-1 flex items-center gap-2.5">
+                    <span class="brand-mark"></span>
+                    <span class="brand-text">DriveSmart</span>
+                </a>
+
+                <!-- Page Navigation -->
+                <nav class="order-3 sm:order-2 flex flex-wrap w-full sm:w-auto items-center justify-center gap-1">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="recommendation.php" class="nav-link">Recommendations</a>
+                    <a href="finance.php" class="nav-link">Finance Tools</a>
+                </nav>
+
+                <!-- Timezone Widget -->
+                <div data-timezone-widget class="order-2 sm:order-3"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="bg-smart-blue text-white py-20 sm:py-28 lg:py-36">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-5xl sm:text-7xl font-bold tracking-tight mb-4 leading-[1.05]">
+                    Your Perfect Drive, <span class="text-smart-teal">Mathematically Matched.</span>
+                </h1>
+                <p class="mt-4 text-lg sm:text-xl max-w-3xl mx-auto text-white/80 font-normal">
+                    DriveSmart combines expert car data with personalized financial assessment to find the vehicle that
+                    fits your life and, most importantly, your budget.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="Recommendation.php" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-semibold rounded-full text-smart-blue bg-white hover:bg-gray-100 transition duration-300">
+                        Start Your Assessment
+                    </a>
+                    <a href="#"
+                        class="inline-flex items-center justify-center px-8 py-3 border border-white/40 text-base font-semibold rounded-full text-white hover:bg-white hover:text-smart-blue transition duration-300">
+                        Watch Demo Video
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Features Section -->
+        <section class="py-16 sm:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center mb-12 pb-12 border-b border-slate-200">
+                    <!-- Top 10 Most Registered Cars Card -->
+                    <div class="relative bg-white rounded-3xl premium-shadow border border-slate-200/60 overflow-hidden self-stretch">
+                        <div class="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-brandGold via-blue-400 to-brandGold z-10"></div>
+                        <div class="p-6 sm:p-8">
+                            <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                                <h3 class="text-lg font-bold text-smart-blue flex items-center gap-3">
+                                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brandGold/10 ring-1 ring-brandGold/30">
+                                        <i class="fa-solid fa-ranking-star text-brandGoldHover text-sm"></i>
+                                    </span>
+                                    Malaysia's Top 10 Registered Cars
+                                </h3>
+                                <span id="topCarsYear" class="text-xs font-semibold text-brandSlate bg-slate-50 border border-slate-200 rounded-full px-3 py-1.5">Loading&hellip;</span>
+                            </div>
+
+                            <div id="topCarsLoading" class="flex items-center gap-2 text-sm text-brandSlate py-6">
+                                <span class="spinner"></span> Crunching JPJ registration data&hellip;
+                            </div>
+
+                            <p id="topCarsError" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-2xl p-3"></p>
+
+                            <ol id="topCarsList" class="hidden space-y-2 max-h-[236px] overflow-y-auto pr-1 scroll-thin"></ol>
+
+                            <p class="mt-5 text-xs text-slate-400">Source: <a href="https://data.gov.my" target="_blank" rel="noopener noreferrer" class="underline hover:text-brandGoldHover">data.gov.my</a> JPJ car registration transactions, year-to-date.</p>
+                        </div>
+                    </div>
+
+                    <!-- Live Fuel Price Card -->
+                    <div class="relative bg-white rounded-3xl premium-shadow border border-slate-200/60 overflow-hidden self-stretch">
+                        <div class="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-brandGold via-blue-400 to-brandGold z-10"></div>
+                        <div class="p-6 sm:p-8">
+                            <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+                                <h3 class="text-lg font-bold text-smart-blue flex items-center gap-3">
+                                    <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brandGold/10 ring-1 ring-brandGold/30">
+                                        <i class="fa-solid fa-gas-pump text-brandGoldHover text-sm"></i>
+                                    </span>
+                                    This Week's Fuel Prices in Malaysia
+                                </h3>
+                                <span id="fuelPriceDate" class="text-xs font-semibold text-brandSlate bg-slate-50 border border-slate-200 rounded-full px-3 py-1.5">Loading&hellip;</span>
+                            </div>
+
+                            <div id="fuelPriceLoading" class="flex items-center gap-2 text-sm text-brandSlate py-6">
+                                <span class="spinner"></span> Fetching latest prices&hellip;
+                            </div>
+
+                            <p id="fuelPriceError" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-2xl p-3"></p>
+
+                            <div id="fuelPriceGrid" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center">
+                                    <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400">RON95</p>
+                                    <p id="ron95Price" class="mt-2 text-2xl font-black text-smart-blue">RM 0.00</p>
+                                    <p id="ron95Change" class="mt-1 text-xs font-semibold"></p>
+                                </div>
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center">
+                                    <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400">RON97</p>
+                                    <p id="ron97Price" class="mt-2 text-2xl font-black text-smart-blue">RM 0.00</p>
+                                    <p id="ron97Change" class="mt-1 text-xs font-semibold"></p>
+                                </div>
+                                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center">
+                                    <p class="text-[10px] uppercase tracking-[0.15em] text-slate-400">Diesel</p>
+                                    <p id="dieselPrice" class="mt-2 text-2xl font-black text-smart-blue">RM 0.00</p>
+                                    <p id="dieselChange" class="mt-1 text-xs font-semibold"></p>
+                                </div>
+                            </div>
+
+                            <p class="mt-5 text-xs text-slate-400">Source: <a href="https://data.gov.my" target="_blank" rel="noopener noreferrer" class="underline hover:text-brandGoldHover">data.gov.my</a> official weekly fuel price ceiling.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+                    <!-- Feature Card 1 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-[0_10px_28px_rgba(20,23,28,.10)] hover:-translate-y-1 transition duration-300">
+                        <div
+                            class="flex items-center justify-center h-12 w-12 rounded-full bg-smart-teal text-white mb-4">
+                            <!-- Icon for AI -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-smart-blue mb-2">AI-Powered Smart Match</h3>
+                        <p class="text-gray-600 text-sm">Our algorithm learns your needs, lifestyle, and driving habits
+                            to suggest vehicles you'll genuinely love.</p>
+                    </div>
+
+                    <!-- Feature Card 2 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-[0_10px_28px_rgba(20,23,28,.10)] hover:-translate-y-1 transition duration-300">
+                        <div
+                            class="flex items-center justify-center h-12 w-12 rounded-full bg-smart-teal text-white mb-4">
+                            <!-- Icon for Finance -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 8v1m-9 3h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-smart-blue mb-2">Budget Projection Tool</h3>
+                        <p class="text-gray-600 text-sm">Calculate true cost of ownership, including insurance, fuel,
+                            maintenance, and potential depreciation.</p>
+                    </div>
+
+                    <!-- Feature Card 3 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-[0_10px_28px_rgba(20,23,28,.10)] hover:-translate-y-1 transition duration-300">
+                        <div
+                            class="flex items-center justify-center h-12 w-12 rounded-full bg-smart-teal text-white mb-4">
+                            <!-- Icon for Comparison -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-smart-blue mb-2">Side-by-Side Comparison</h3>
+                        <p class="text-gray-600 text-sm">Easily compare up to three vehicles simultaneously on
+                            performance, features, and cost metrics.</p>
+                    </div>
+
+                    <!-- Feature Card 4 -->
+                    <div
+                        class="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-[0_10px_28px_rgba(20,23,28,.10)] hover:-translate-y-1 transition duration-300">
+                        <div
+                            class="flex items-center justify-center h-12 w-12 rounded-full bg-smart-teal text-white mb-4">
+                            <!-- Icon for Data -->
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 7v10M10 7v10M16 7v10M20 7v10M7 4h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-smart-blue mb-2">Up-to-Date Market Data</h3>
+                        <p class="text-gray-600 text-sm">We pull real-time pricing and inventory data from thousands of
+                            sources to ensure accuracy.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Call to Action (CTA) Banner -->
+        <section class="bg-smart-light py-16 sm:py-20 border-t border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold text-smart-blue">
+                    Ready to Find Your Next Vehicle?
+                </h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    Take the free 5-minute financial assessment now and unlock your personalized car matches.
+                </p>
+                <div class="mt-8">
+                    <a href="http://127.0.0.1:5000/Assessment" target="_blank"
+                        class="inline-flex items-center justify-center px-10 py-4 border border-transparent text-base font-bold rounded-full text-white bg-smart-blue hover:bg-brandGoldHover transition duration-300">
+                        Start the 5-Minute Assessment
+                        <!-- Arrow Icon -->
+                        <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-smart-blue py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white/60">
+                <p class="font-display text-lg font-semibold text-white mb-2">DriveSmart</p>
+                <div class="space-x-4 text-sm mb-3">
+                    <a href="#" class="hover:text-smart-teal transition duration-150">Privacy Policy</a>
+                    <span class="text-white/20">|</span>
+                    <a href="#" class="hover:text-smart-teal transition duration-150">Terms of Service</a>
+                    <span class="text-white/20">|</span>
+                    <a href="#" class="hover:text-smart-teal transition duration-150">Contact</a>
+                </div>
+                <p class="text-xs">&copy; 2024 DriveSmart Platform. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="timezone-widget.js"></script>
+    <script src="fuel-price-widget.js"></script>
+    <script src="top-cars-widget.js"></script>
+</body>
+
+</html>

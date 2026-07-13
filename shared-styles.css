@@ -1,0 +1,143 @@
+/**
+ * shared-styles.css
+ * DriveSmart – common styles reused across the marketing/app pages
+ * (index.html, finance.php, recommendation.php). Page-specific rules
+ * stay in each page's own <style> block.
+ */
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, .font-display {
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: .2px;
+}
+
+.premium-shadow {
+    box-shadow: 0 10px 28px rgba(20, 23, 28, .10);
+}
+
+.premium-shadow, .rounded-3xl {
+    border-radius: 14px !important;
+}
+
+.brand-mark {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: conic-gradient(#0d6efd 0 25%, #fff 25% 50%, #0d6efd 50% 75%, #fff 75% 100%);
+    border: 2px solid #fff;
+    display: inline-block;
+}
+
+.brand-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.nav-link {
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .7);
+    text-decoration: none;
+    transition: color .15s, background-color .15s;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.nav-link.active {
+    color: #fff;
+    font-weight: 700;
+    background: rgba(255, 255, 255, .1);
+}
+
+.spinner {
+    border: 3px solid #e2e8f0;
+    border-top-color: #0d6efd;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.input-glow:focus {
+    border-color: #111315 !important;
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15) !important;
+}
+
+.scroll-thin {
+    scrollbar-width: thin;
+}
+
+.scroll-thin::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+    background: #e3e5e9;
+    border-radius: 999px;
+}
+
+/* World clock widget (see timezone-widget.js) — plain CSS so it renders
+   the same whether or not the page also loads Tailwind. */
+.tzw {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, .05);
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, .8);
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.tzw i {
+    color: #0d6efd;
+}
+
+.tzw-time {
+    font-weight: 600;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+.tzw-meta {
+    color: rgba(255, 255, 255, .4);
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .tzw-meta {
+        display: inline;
+    }
+}
+
+.tzw-select {
+    background: transparent;
+    color: rgba(255, 255, 255, .8);
+    font-size: 12px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.tzw-select option {
+    color: #1f2937;
+}
